@@ -1,3 +1,58 @@
-/* 
-    General Styles
-*/
+.contact-card {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.contact-card-image img {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+}
+
+.contact-card-details {
+    flex-grow: 1;
+    margin-left: 15px;
+}
+
+.contact-card-details h5 {
+    margin: 0;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.contact-card-details p {
+    margin: 5px 0;
+    color: #666;
+}
+
+.contact-card-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.contact-card-actions .btn {
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contact-card-actions .btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.contact-card-actions .btn-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+.contact-card-actions .btn:hover {
+    opacity: 0.8;
+}
