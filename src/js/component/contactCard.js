@@ -1,78 +1,23 @@
-import React, { useState, useContext } from "react";
-import { Context } from "../store/appContext";
-import { useHistory } from "react-router-dom";
+import React from "react";
+import PropTypes from "prop-types";
 
-export const AddContact = () => {
-    const { actions } = useContext(Context);
-    const history = useHistory();
-
-    const [contact, setContact] = useState({
-        full_name: "",
-        email: "",
-        phone: "",
-        address: ""
-    });
-
-    const handleChange = (event) => {
-        setContact({
-            ...contact,
-            [event.target.name]: event.target.value
-        });
-    };
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        actions.addContact(contact);
-        history.push("/"); // Redirige a la lista de contactos después de añadir
-    };
-
+export const ContactCard = ({ contact, onDelete, onEdit }) => {
     return (
-        <form onSubmit={handleSubmit}>
-            <div className="form-group">
-                <label>Full Name</label>
-                <input
-                    type="text"
-                    className="form-control"
-                    name="full_name"
-                    value={contact.full_name}
-                    onChange={handleChange}
-                    required
-                />
+        <div className="card">
+            <div className="card-body">
+                <h5 className="card-title">{contact.name}</h5>
+                <p className="card-text">Email: {contact.email}</p>
+                <p className="card-text">Phone: {contact.phone}</p>
+                <p className="card-text">Address: {contact.address}</p>
+                <button className="btn btn-primary" onClick={() => onEdit(contact.id)}>Edit</button>
+                <button className="btn btn-danger" onClick={() => onDelete(contact.id)}>Delete</button>
             </div>
-            <div className="form-group">
-                <label>Email</label>
-                <input
-                    type="email"
-                    className="form-control"
-                    name="email"
-                    value={contact.email}
-                    onChange={handleChange}
-                    required
-                />
-            </div>
-            <div className="form-group">
-                <label>Phone</label>
-                <input
-                    type="text"
-                    className="form-control"
-                    name="phone"
-                    value={contact.phone}
-                    onChange={handleChange}
-                    required
-                />
-            </div>
-            <div className="form-group">
-                <label>Address</label>
-                <input
-                    type="text"
-                    className="form-control"
-                    name="address"
-                    value={contact.address}
-                    onChange={handleChange}
-                    required
-                />
-            </div>
-            <button type="submit" className="btn btn-primary">Save</button>
-        </form>
+        </div>
     );
+};
+
+ContactCard.propTypes = {
+    contact: PropTypes.object.isRequired,
+    onDelete: PropTypes.func.isRequired,
+    onEdit: PropTypes.func.isRequired
 };

@@ -1,43 +1,79 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
-
+import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
-
-import "../../styles/addContact.css";
+import { useNavigate } from "react-router-dom";
 
 export const AddContact = () => {
-	const { store, actions } = useContext(Context);
+    const { actions } = useContext(Context);
+    const navigate = useNavigate();
 
-	return (
-		<div className="container">
-			<ul className="list-group">
-				{store.demo.map((item, index) => {
-					return (
-						<li
-							key={index}
-							className="list-group-item d-flex justify-content-between"
-							style={{ background: item.background }}>
-							<Link to={"/single/" + index}>
-								<span>Link to: {item.title}</span>
-							</Link>
-							{// Conditional render example
-							// Check to see if the background is orange, if so, display the message
-							item.background === "orange" ? (
-								<p style={{ color: item.initial }}>
-									Check store/flux.js scroll to the actions to see the code
-								</p>
-							) : null}
-							<button className="btn btn-success" onClick={() => actions.changeColor(index, "orange")}>
-								Change Color
-							</button>
-						</li>
-					);
-				})}
-			</ul>
-			<br />
-			<Link to="/">
-				<button className="btn btn-primary">Back home</button>
-			</Link>
-		</div>
-	);
+    const [contact, setContact] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        address: ""
+    });
+
+    const handleChange = (event) => {
+        setContact({
+            ...contact,
+            [event.target.name]: event.target.value
+        });
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        console.log(contact);
+        actions.addContact(contact); // Asegúrate de que coincida con el nombre en flux.js
+        navigate("/"); // Redirige a la lista de contactos después de añadir
+    };
+
+    return (
+        <form onSubmit={handleSubmit}>
+            <div className="form-group">
+                <label>Full Name</label>
+                <input
+                    type="text"
+                    className="form-control"
+                    name="name"
+                    value={contact.name}
+                    onChange={handleChange}
+                    required
+                />
+            </div>
+            <div className="form-group">
+                <label>Email</label>
+                <input
+                    type="email"
+                    className="form-control"
+                    name="email"
+                    value={contact.email}
+                    onChange={handleChange}
+                    required
+                />
+            </div>
+            <div className="form-group">
+                <label>Phone</label>
+                <input
+                    type="text"
+                    className="form-control"
+                    name="phone"
+                    value={contact.phone}
+                    onChange={handleChange}
+                    required
+                />
+            </div>
+            <div className="form-group">
+                <label>Address</label>
+                <input
+                    type="text"
+                    className="form-control"
+                    name="address"
+                    value={contact.address}
+                    onChange={handleChange}
+                    required
+                />
+            </div>
+            <button type="submit" className="btn btn-primary">Save</button>
+        </form>
+    );
 };
