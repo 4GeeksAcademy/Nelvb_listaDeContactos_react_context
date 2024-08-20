@@ -1,10 +1,11 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export const AddContact = () => {
-    const { actions } = useContext(Context);
+    const { actions, store } = useContext(Context);
     const navigate = useNavigate();
+    const { id } = useParams(); // Obtén el ID del contacto desde la URL
 
     const [contact, setContact] = useState({
         name: "",
@@ -12,6 +13,16 @@ export const AddContact = () => {
         phone: "",
         address: ""
     });
+
+    useEffect(() => {
+        if (id) {
+            // Si estamos en modo edición, carga el contacto existente
+            const existingContact = store.contacts.find(contact => contact.id === parseInt(id));
+            if (existingContact) {
+                setContact(existingContact);
+            }
+        }
+    }, [id, store.contacts]);
 
     const handleChange = (event) => {
         setContact({
@@ -22,9 +33,14 @@ export const AddContact = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(contact);
-        actions.addContact(contact); // Asegúrate de que coincida con el nombre en flux.js
-        navigate("/"); // Redirige a la lista de contactos después de añadir
+        if (id) {
+            // Si existe un ID, estamos en modo edición
+            actions.editContact(id, contact);
+        } else {
+            // Si no hay ID, estamos en modo creación
+            actions.addContact(contact);
+        }
+        navigate("/"); // Redirige a la lista de contactos después de guardar
     };
 
     return (
@@ -73,7 +89,9 @@ export const AddContact = () => {
                     required
                 />
             </div>
-            <button type="submit" className="btn btn-primary">Save</button>
+            <button type="submit" className="btn btn-primary">
+                {id ? "Save Changes" : "Add Contact"}
+            </button>
         </form>
     );
 };

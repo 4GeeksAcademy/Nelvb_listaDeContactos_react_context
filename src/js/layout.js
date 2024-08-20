@@ -23,8 +23,8 @@ const Layout = () => {
 					<Routes>
 						<Route path="/" element={<Contact />} />
 						<Route path="/add-contact" element={<AddContact />} />
-						<Route path="/single/:theid" element={<Single />} />  {/* Solo mantener si es necesario */}
 						<Route path="*" element={<h1>Not found!</h1>} />
+						<Route path="/add-contact/:id" element={<AddContact/>} /> {/* Solo mantener si es necesario */}
 					</Routes>
 					<Footer />
 				</ScrollToTop>

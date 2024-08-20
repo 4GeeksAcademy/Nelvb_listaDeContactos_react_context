@@ -4,7 +4,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             contacts: []
         },
         actions: {
-            checkOrCreateAgenda: async () => { // Asegúrate de que el nombre coincida con lo que se usa en appContext.js
+            checkOrCreateAgenda: async () => {
                 try {
                     const response = await fetch("https://playground.4geeks.com/contact/agendas/Nelvb");
                     if (response.ok) {
@@ -80,11 +80,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 
             deleteContact: async (id) => {
                 try {
-                    const response = await fetch(`https://playground.4geeks.com/contact/${id}`, {
+                    console.log(`Eliminando contacto con ID: ${id}`);
+                    const response = await fetch(`https://playground.4geeks.com/contact/agendas/Nelvb/contacts/${id}`, {
                         method: "DELETE"
                     });
                     if (response.ok) {
                         await getActions().loadContacts(); // Recargar los contactos después de eliminar
+                        console.log(`Contacto con ID: ${id} eliminado exitosamente`);
                     } else {
                         console.error("Error al eliminar el contacto:", response.status);
                     }
@@ -94,16 +96,30 @@ const getState = ({ getStore, getActions, setStore }) => {
             },
 
             editContact: async (id, contact) => {
+                if (!contact) {
+                    console.error("El contacto está indefinido. No se puede editar.");
+                    return;
+                }
+
                 try {
-                    const response = await fetch(`https://playground.4geeks.com/contact/${id}`, {
+                    console.log(`Editando contacto con ID: ${id} y datos:`, contact);
+                    
+                    const response = await fetch(`https://playground.4geeks.com/contact/agendas/Nelvb/contacts/${id}`, {
                         method: "PUT",
                         headers: {
                             "Content-Type": "application/json"
                         },
-                        body: JSON.stringify(contact)
+                        body: JSON.stringify({
+                            name: contact.name,
+                            phone: contact.phone,
+                            email: contact.email,
+                            address: contact.address
+                        })
                     });
+                    
                     if (response.ok) {
                         await getActions().loadContacts(); // Recargar los contactos después de editar
+                        console.log(`Contacto con ID: ${id} editado exitosamente`);
                     } else {
                         console.error("Error al editar el contacto:", response.status);
                     }

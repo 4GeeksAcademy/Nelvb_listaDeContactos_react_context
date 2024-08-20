@@ -11,9 +11,9 @@ export const Contact = () => {
                 store.contacts.map((contact, index) => (
                     <ContactCard
                         key={index}
-                        contact={contact}
-                        onDelete={actions.eliminarContacto}
-                        onEdit={actions.editarContacto}
+                        contact={contact} // Aquí pasamos el objeto `contact` completo
+                        onDelete={(id) => actions.deleteContact(id)} // Pasamos la función `deleteContact`
+                        onEdit={(id, contact) => actions.editContact(id, contact)} // Pasamos la función `editContact` con los parámetros adecuados
                     />
                 ))
             ) : (
