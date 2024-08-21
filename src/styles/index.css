@@ -1,33 +1,44 @@
-
 header {
-    background-color: rgb(235, 221, 203);
+    background-color: rgb(226, 245, 248);
     padding: 20px;
     text-align: center;
     margin-bottom: 20px;
 }
 
+.contact-card-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lightblue;
+    border-radius: 5px;
+    width: 100px;
+    height: 100px;
+}
 
 .contact-card {
     display: flex;
     align-items: center;
     padding: 15px;
     margin-bottom: 10px;
-    background-color: white;
+    background-color: rgb(226, 245, 248);
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    justify-content: space-between; /* Alinea la información del contacto y los iconos a los lados opuestos */
+    justify-content: space-between; 
 }
 
+/* Evita que la imagen del contacto se reduzca */
 .contact-card-image {
-    flex-shrink: 0; /* Evita que la imagen se reduzca */
+    flex-shrink: 0;
 }
 
+/* Ajustes de la imagen dentro de la tarjeta */
 .contact-card-image img {
-    border-radius: 50%;
+    border-radius: 50%; /* Hace la imagen redonda */
     width: 60px;
     height: 60px;
 }
 
+/* Estilos para los detalles del contacto */
 .contact-card-details {
     flex-grow: 1;
     margin-left: 15px;
@@ -44,12 +55,19 @@ header {
     color: #666;
 }
 
+.contact-card-details .card-text i {
+    margin-right: 10px;
+}
+
+
 .button-group {
     display: flex;
     gap: 10px; /* Espacio entre los iconos */
 }
 
-.editarContacto, .papeleraEliminar {
+
+.editarContacto,
+.papeleraEliminar {
     background: none;
     border: none;
     color: #000;
@@ -57,6 +75,25 @@ header {
     cursor: pointer;
 }
 
-.editarContacto:hover, .papeleraEliminar:hover {
+.editarContacto:hover,
+.papeleraEliminar:hover {
     color: #007bff; /* Cambiar color al pasar el ratón */
+}
+
+
+.btn.btn-primary {
+    margin-top: 20px; 
+}
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 600px) {
+    .contact-card {
+        flex-direction: column; /* Cambia la dirección a columna en pantallas pequeñas */
+        align-items: flex-start; /* Alinea los elementos al inicio */
+    }
+
+    .button-group {
+        margin-top: 10px; /* Añade margen superior para separar los botones */
+        align-self: flex-end; /* Alinea los botones al final de la tarjeta */
+    }
 }

@@ -29,9 +29,12 @@ export const ContactCard = ({ contact, onDelete }) => {
             </div>
             <div className="contact-card-details">
                 <h5 className="card-title">{contact.name}</h5>
-                <p className="card-text">Email: {contact.email}</p>
-                <p className="card-text">Phone: {contact.phone}</p>
-                <p className="card-text">Address: {contact.address}</p>
+                <p className="card-text">
+                    <i className= 'fa fa-envelope'></i>{contact.email}</p>
+                <p className="card-text">
+                    <i className="fas fa-phone"></i>{contact.phone}</p>
+                <p className="card-text">
+                    <i className="fas fa-map-marker-alt"></i>{contact.address}</p>
             </div>
             <div className="button-group">
                 <button 

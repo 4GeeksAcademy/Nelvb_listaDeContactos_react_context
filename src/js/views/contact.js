@@ -9,7 +9,7 @@ export const Contact = () => {
     return (
         <div className="container">
             <div className="d-flex justify-content-end my-3">
-                <Link to="/add-contact" className="btn btn-primary">Add new contact</Link>
+                <Link to="/add-contact" className="btn btn-primary">Añadir nuevo contacto</Link>
             </div>
             <div className="contact-list">
                 {Array.isArray(store.contacts) && store.contacts.length > 0 ? (
