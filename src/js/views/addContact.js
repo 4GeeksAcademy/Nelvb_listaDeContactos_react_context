@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 export const AddContact = () => {
     const { actions, store } = useContext(Context);
@@ -44,6 +44,12 @@ export const AddContact = () => {
     };
 
     return (
+        <div className='container'>
+            <div className= 'd-flex justify-content-between my-3'>
+                <Link to='/' className='btn btn-secondary'>Volver a la lista de contactos</Link>
+
+            </div>
+
         <form onSubmit={handleSubmit}>
             <div className="form-group">
                 <label>Full Name</label>
@@ -93,5 +99,6 @@ export const AddContact = () => {
                 {id ? "Save Changes" : "Add Contact"}
             </button>
         </form>
+        </div>
     );
 };

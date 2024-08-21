@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
 
-export const ConfirmDeleteModal = ({ show, contactName, onConfirm, onCancel }) => {
+export const ConfirmDeleteModal = ({ show, onConfirm, onCancel }) => {
     if (!show) {
         return null; //No mostrar nada si show es falso.
     }
@@ -15,10 +15,6 @@ export const ConfirmDeleteModal = ({ show, contactName, onConfirm, onCancel }) =
                     <div className='modal-header'>
                         <h5 className='modal-title'>Confirmar eliminar
                         </h5>
-
-                        <button type='button' className='close' onClick={onCancel}>
-                            <span>&times;</span>
-                        </button>
                     </div>
                     <div className='modal-body'>
                         <p>¿Estas seguro que quieres eliminar el contacto?</p>
