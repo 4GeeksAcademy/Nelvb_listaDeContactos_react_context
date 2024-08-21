@@ -28,19 +28,21 @@ header {
 
 /* Evita que la imagen del contacto se reduzca */
 .contact-card-image {
-    flex-shrink: 0;
+    flex-shrink: 0;/* Evita que este elemento se reduzca cuando el contenedor flex se hace más pequeño. 
+    Asegura que la imagen mantenga su tamaño original y no se comprima. */
 }
 
 /* Ajustes de la imagen dentro de la tarjeta */
 .contact-card-image img {
-    border-radius: 50%; /* Hace la imagen redonda */
+    border-radius: 50%; 
     width: 60px;
     height: 60px;
 }
 
 /* Estilos para los detalles del contacto */
 .contact-card-details {
-    flex-grow: 1;
+    flex-grow: 1;/* Permite que este elemento crezca y ocupe todo el espacio disponible 
+    en el contenedor flex, evitando que otros elementos lo empujen fuera del contenedor. */
     margin-left: 15px;
 }
 
@@ -62,7 +64,7 @@ header {
 
 .button-group {
     display: flex;
-    gap: 10px; /* Espacio entre los iconos */
+    gap: 10px; 
 }
 
 

@@ -2,7 +2,15 @@ import React from "react";
 import PropTypes from 'prop-types';
 
 export const ConfirmDeleteModal = ({ show, onConfirm, onCancel }) => {
+     // Es una función de componente de React que recibe tres props:
+    // `show`, `onConfirm`, y `onCancel`.
+
+    // `show`: Esta prop controla si el modal debe mostrarse o no. Es un valor booleano (`true` o `false`).
+    // `onConfirm`: Esta prop es una función que se ejecuta cuando el usuario confirma la acción (en este caso, la eliminación).
+    // `onCancel`: Esta prop es una función que se ejecuta cuando el usuario decide cancelar la acción.
     if (!show) {
+         // Esta condición verifica si `show` es `false`. 
+        // Si `show` es `false`, el modal no se muestra y la función retorna `null`, es decir, no renderiza nada en la interfaz.
         return null; //No mostrar nada si show es falso.
     }
 
