@@ -67,7 +67,6 @@ export const ContactCard = ({ contact, onDelete }) => {
                 onConfirm={handleConfirmDelete} // Función que se ejecuta al confirmar la eliminación.
                 onCancel={handleCancelDelete} // Función que se ejecuta al cancelar la eliminación.
             />
-
         </div>
     );
 };
